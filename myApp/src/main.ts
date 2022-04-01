@@ -23,6 +23,11 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* AMPLIFY */
+import { Authenticator } from "@aws-amplify/ui-vue";
+import "@aws-amplify/ui-vue/styles.css";
+import awsExports from './aws-exports';
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
