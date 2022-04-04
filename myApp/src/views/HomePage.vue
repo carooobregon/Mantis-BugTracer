@@ -13,16 +13,39 @@
       <!-- <amplify-sign-out></amplify-sign-out> -->
     </amplify-authenticator>
     <div v-if="authState === 'signedin' && user">
-      <amplify-sign-out></amplify-sign-out>
-      <div>Hello, {{ user.attributes.email }}</div>
+      <ion-page>
+        <ion-header :translucent="true">
+          <ion-toolbar>
+            <ion-title>Home</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content :fullscreen="true" class="ion-padding">
+          <div>Hello, {{ user.attributes.email }}</div>
+          <amplify-sign-out></amplify-sign-out>
+        </ion-content>
+      </ion-page>
     </div>
   </div>
 </template>
 
 <script>
 import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import {
+  IonContent,
+  IonPage,
+  IonToolbar,
+  IonHeader,
+  IonTitle,
+} from "@ionic/vue";
 
 export default {
+  components: {
+    IonContent,
+    IonPage,
+    IonToolbar,
+    IonHeader,
+    IonTitle,
+  },
   created() {
     this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
