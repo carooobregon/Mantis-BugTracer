@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/chat": {
+      "name": "/chat",
+      "lambdaFunction": "chatlambda",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mantis-dev-131512-authRole",
+      "UnauthRoleArn": "arn:aws:iam::097867801706:role/amplify-mantis-dev-131512-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::097867801706:role/amplify-mantis-dev-131512-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mantis-dev-131512-deployment",
+      "UnauthRoleName": "amplify-mantis-dev-131512-unauthRole",
+      "StackName": "amplify-mantis-dev-131512",
+      "StackId": "arn:aws:cloudformation:us-east-1:097867801706:stack/amplify-mantis-dev-131512/2ee4fc50-b443-11ec-ab6e-12276d566b21",
+      "AmplifyAppId": "ddkqssr9ntzlx"
+    },
+    "categories": {
+      "function": {
+        "chatlambda": {
+          "deploymentBucketName": "amplify-mantis-dev-131512-deployment",
+          "s3Key": "amplify-builds/chatlambda-2b5578614b71352f622b-build.zip"
+        }
+      }
+    }
+  }
+}
