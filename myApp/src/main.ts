@@ -24,14 +24,27 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 /* AMPLIFY */
-import { Authenticator } from "@aws-amplify/ui-vue";
+import {
+  applyPolyfills,
+  defineCustomElements,
+} from '@aws-amplify/ui-components/loader';
+import Amplify from 'aws-amplify';
+// import { Authenticator } from "@aws-amplify/ui-vue";
 import "@aws-amplify/ui-vue/styles.css";
 import awsExports from './aws-exports';
+
+Amplify.configure(awsExports);
+
+applyPolyfills().then(() => {
+  defineCustomElements(window);
+})
 
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-  
+
+app.config.isCustomElement = (tag) => tag.startsWith('amplify-');
+
 router.isReady().then(() => {
   app.mount('#app');
 });

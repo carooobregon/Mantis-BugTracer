@@ -17,6 +17,9 @@
           "deploymentBucketName": "amplify-mantis-dev-131512-deployment",
           "s3Key": "amplify-builds/chatlambda-2b5578614b71352f622b-build.zip"
         }
+      },
+      "auth": {
+        "mantisa2b0fd52": {}
       }
     }
   }

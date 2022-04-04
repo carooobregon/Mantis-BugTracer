@@ -1,38 +1,96 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Home</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
-    <ion-content :fullscreen="true" class="ion-padding">
-      <p> Logged In </p>
-      <ion-button> LOGOUT </ion-button>  
-    </ion-content>
-  </ion-page>
+  <div>
+    <!-- <div v-if="authState !== 'signedin'">You are signed out.</div> -->
+    <amplify-authenticator
+      v-if="authState !== 'signedin'"
+      username-alias="email"
+    >
+      <amplify-sign-up
+        slot="sign-up"
+        username-alias="email"
+        :formFields="formFields"
+      ></amplify-sign-up>
+      <!-- <amplify-sign-out></amplify-sign-out> -->
+    </amplify-authenticator>
+    <div v-if="authState === 'signedin' && user">
+      <ion-page>
+        <ion-header :translucent="true">
+          <ion-toolbar>
+            <ion-title>Home</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content :fullscreen="true" class="ion-padding">
+          <div>Hello, {{ user.attributes.email }}</div>
+          <amplify-sign-out></amplify-sign-out>
+        </ion-content>
+      </ion-page>
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { defineComponent } from 'vue';
+<script>
+import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import {
+  IonContent,
+  IonPage,
+  IonToolbar,
+  IonHeader,
+  IonTitle,
+} from "@ionic/vue";
 
-export default defineComponent({
-  name: 'HomePage',
+export default {
   components: {
     IonContent,
-    IonHeader,
     IonPage,
+    IonToolbar,
+    IonHeader,
     IonTitle,
-    IonToolbar
-  }
-});
+  },
+  created() {
+    this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+      this.user = authData;
+    });
+  },
+  data() {
+    return {
+      user: undefined,
+      authState: undefined,
+      unsubscribeAuth: undefined,
+      formFields: [
+        {
+          type: "email",
+          label: "Email Address *",
+          inputProps: { required: true, autocomplete: "email" },
+        },
+        {
+          type: "username",
+          label: "Username *",
+          inputProps: { required: true, autocomplete: "name" },
+        },
+        {
+          type: "password",
+          label: "Password *",
+          inputProps: { required: true, autocomplete: "new-password" },
+        },
+        {
+          type: "password",
+          label: "Confirm Password *",
+          inputProps: { required: true },
+        },
+      ],
+    };
+  },
+  beforeUnmount() {
+    this.unsubscribeAuth();
+  },
+};
 </script>
 
 <style scoped>
 #container {
   text-align: center;
-  
+
   position: absolute;
   left: 0;
   right: 0;
@@ -48,9 +106,9 @@ export default defineComponent({
 #container p {
   font-size: 16px;
   line-height: 22px;
-  
+
   color: #8c8c8c;
-  
+
   margin: 0;
 }
 
