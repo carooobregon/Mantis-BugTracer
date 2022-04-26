@@ -15,7 +15,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "auth": {
-        "mantisa2b0fd52": {
+        "mantis79a34b63": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
