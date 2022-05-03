@@ -9,11 +9,19 @@
       "UnauthRoleName": "amplify-bugtracer-dev-184452-unauthRole",
       "StackName": "amplify-bugtracer-dev-184452",
       "StackId": "arn:aws:cloudformation:us-east-1:097867801706:stack/amplify-bugtracer-dev-184452/ddc6a0e0-ca71-11ec-99cd-0a16f5aec431",
-      "AmplifyAppId": "d2th6mmbwfvfon"
+      "AmplifyAppId": "d2th6mmbwfvfon",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-bugtracer-dev-184452-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "bugtracer9c76622f": {}
+        "bugtracer9c76622f": {},
+        "true": {}
+      },
+      "function": {
+        "mantisChatLambda": {
+          "deploymentBucketName": "amplify-bugtracer-dev-184452-deployment",
+          "s3Key": "amplify-builds/mantisChatLambda-6957743163546e304330-build.zip"
+        }
       }
     }
   }
