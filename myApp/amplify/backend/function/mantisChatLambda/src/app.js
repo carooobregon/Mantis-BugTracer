@@ -12,6 +12,7 @@ const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const express = require('express')
+const{ v4: uuidv4} = require('uuid')
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -44,6 +45,117 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
+const getUserId = request => {
+  try{
+    const reqContext = request.apiGateway.event.requestContext;
+    const authProvider = reqContext.identity.cognitoAuthenticationProvider;
+    return authProvider ? authProvider.split(":CognitoSignIn:").pop() : "UNAUTH";
+  }catch(err){
+    return "UNAUTH";
+  }
+}
+
+app.get("/messages", function(req,res){
+  let params ={
+    TableName: tableName,
+    limit: 100
+  }
+  dynamodb.scan(params, (err, res) =>{
+    if(err){
+      res.json({statusCode:500, error: err.message, url: req.url});
+    }else{
+      res.json({statusCode:200, url: req.url, body: JSON.stringify(res.Items) })
+    }
+  });
+});
+
+app.get("/messages/:id", function(req,res){
+  let params ={
+    TableName: tableName,
+    Key: {
+      id:req.params.id
+    }
+  }
+  dynamodb.get(params, (err, res) =>{
+    if(err){
+      res.json({statusCode:500, error: err.message, url: req.url});
+    }else{
+      res.json({statusCode:200, url: req.url, body: JSON.stringify(res.Item) })
+    }
+  });
+});
+
+app.post("/messages", function(req,res){
+  const timestamp = new Date().toISOString();
+  let params ={
+    TableName: tableName,
+    Item:{
+      ...req.body,
+      id: uuidv4(),
+      createdAt: timestamp,
+      updatedAt: timestamp,
+      userId: getUserId(req)
+    }
+  }
+
+  dynamodb.put(params, (err, res) =>{
+    if(err){
+      res.json({statusCode:500, error: err.message, url: req.url});
+    }else{
+      res.json({statusCode:200, url: req.url, body: JSON.stringify(res.Item) })
+    }
+  });
+});
+
+app.put("/messages", function(req,res){
+  const timestamp = new Date().toISOString();
+  let params ={
+    TableName: tableName,
+    Key:{
+      id: req.body.id,
+    },
+    ExpressionAttributeNames: {"#text" : 'text'},
+    ExpressionAttributeValues: {},
+    ReturnValues: 'UPDATED_NEW',
+  };
+  params.UpdateExpression = 'SET';
+  if(req.body.text){
+    params.ExpressionAttributeValues[':text'] = req.body.text;
+    params.UpdateExpression += '#text = :text, ';  
+  }
+  if(req.body.text){
+    params.ExpressionAttributeValues[':updatedAt'] = timestamp;
+    params.UpdateExpression += 'updatedAt = :updatedAt';
+  }
+
+  dynamodb.update(params, (err, res) =>{
+    if(err){
+      res.json({statusCode:500, error: err.message, url: req.url});
+    }else{
+      res.json({statusCode:200, url: req.url, body: JSON.stringify(res.Attributes) })
+    }
+  });
+});
+
+app.delete("/messages/:id", function(req,res){
+  const timestamp = new Date().toISOString();
+  let params ={
+    TableName: tableName,
+    Key:{
+      id: req.params.id
+    }
+  }
+
+  dynamodb.delete(params, (err, res) =>{
+    if(err){
+      res.json({statusCode:500, error: err.message, url: req.url});
+    }else{
+      res.json({statusCode:200, url: req.url, body: JSON.stringify(res) })
+    }
+  });
+});
+
+
 
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {

@@ -20,7 +20,7 @@
       "function": {
         "mantisChatLambda": {
           "deploymentBucketName": "amplify-bugtracer-dev-184452-deployment",
-          "s3Key": "amplify-builds/mantisChatLambda-6957743163546e304330-build.zip"
+          "s3Key": "amplify-builds/mantisChatLambda-64656f3164377a305a41-build.zip"
         }
       }
     }

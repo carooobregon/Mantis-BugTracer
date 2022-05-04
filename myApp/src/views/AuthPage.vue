@@ -14,10 +14,20 @@
     </amplify-authenticator>
     <!-- <div v-if="authState === 'signedin' && user">Loading...</div> -->
   </div>
+  <div class = "form-body">
+    <form v-on:submit.prevent>
+      <button @click='getMessages' class = 'button'> GET /messages</button>
+      <button @click='getMessagesByID' class = 'button'> GET /messages/:id</button>
+      <button @click='postMessages' class = 'button'> POST /messages</button>
+      <button @click='putMessages' class = 'button'> PUT /messages</button>
+      <button @click='deleteByID' class = 'button'> DELETE /messages/:id</button>
+    </form>
+  </div>
 </template>
 
 <script>
 import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import {API} from 'aws-amplify';
 
 export default {
   created() {
@@ -28,6 +38,52 @@ export default {
       this.$router.push({ name: "Home" });
       }
     });
+  },
+  methods: {
+    getMessages:function() {
+      console.log("get messages");
+      API.get("mantisChatAPI", '/messages',{}).then(result =>{
+        console.log(result)
+      }).catch(err =>{
+        console.log(err);
+      })
+    },
+    getMessagesByID: function(){
+    console.log("get messages by id");
+      API.get("mantisChatAPI", '/messages/:id',{}).then(result =>{
+        console.log(result)
+      }).catch(err =>{
+        console.log(err);
+      })
+    },
+    postMessages:function(){
+      console.log("post message");
+      API.post("mantisChatAPI", '/messages',{}).then(result =>{
+        body:{
+          text:"message1"
+        }
+        console.log(result)
+      }).catch(err =>{
+        console.log(err);
+      })
+    },
+    putMessages:function(){
+    console.log("put messages");
+      API.put("mantisChatAPI", '/messages',{}).then(result =>{
+        console.log(result)
+      }).catch(err =>{
+        console.log(err);
+      })
+    },
+    deleteByID:function(){
+    console.log("get messages");
+      API.delete("mantisChatAPI", '/messages/:id',{}).then(result =>{
+        console.log(result)
+      }).catch(err =>{
+        console.log(err);
+      })
+    }
+
   },
   data() {
     return {

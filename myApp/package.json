@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@aws-amplify/ui-components": "^1.9.6",
-    "@aws-amplify/ui-vue": "^2.3.4",
+    "@aws-amplify/ui-vue": "^2.4.0",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.4.3",
     "@capacitor/haptics": "1.1.4",
@@ -23,10 +23,11 @@
     "@heroicons/vue": "^1.0.6",
     "@ionic/vue": "^6.0.0",
     "@ionic/vue-router": "^6.0.0",
-    "aws-amplify": "^4.3.18",
+    "aws-amplify": "^4.3.21",
     "core-js": "^3.6.5",
     "i": "^0.3.7",
     "typescript-eslint": "0.0.1-alpha.0",
+    "uuid": "^8.3.2",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12"
   },
