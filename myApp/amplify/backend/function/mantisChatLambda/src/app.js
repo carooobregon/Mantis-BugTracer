@@ -45,6 +45,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
+
 const getUserId = request => {
   try{
     const reqContext = request.apiGateway.event.requestContext;

@@ -49,8 +49,9 @@ export default {
       })
     },
     getMessagesByID: function(){
+    const id = this.lastMessageId;
     console.log("get messages by id");
-      API.get("mantisChatAPI", '/messages/:id',{}).then(result =>{
+      API.get("mantisChatAPI", '/messages/${id}',{}).then(result =>{
         console.log(result)
       }).catch(err =>{
         console.log(err);
@@ -58,10 +59,12 @@ export default {
     },
     postMessages:function(){
       console.log("post message");
-      API.post("mantisChatAPI", '/messages',{}).then(result =>{
-        body:{
+      API.post("mantisChatAPI", '/messages',{
+      body:{
           text:"message1"
         }
+      }).then(result =>{
+        this.lastMessageId = JSON.parse(result.body).id;
         console.log(result)
       }).catch(err =>{
         console.log(err);
@@ -69,7 +72,14 @@ export default {
     },
     putMessages:function(){
     console.log("put messages");
-      API.put("mantisChatAPI", '/messages',{}).then(result =>{
+    const id =  this.lastMessageId;
+    if(!id) return;
+      API.put("mantisChatAPI", '/messages',{
+        body: {
+          id: id,
+          text: "message2"
+        }
+      }).then(result =>{
         console.log(result)
       }).catch(err =>{
         console.log(err);
@@ -77,19 +87,21 @@ export default {
     },
     deleteByID:function(){
     console.log("get messages");
-      API.delete("mantisChatAPI", '/messages/:id',{}).then(result =>{
+      const id =  this.lastMessageId;
+      API.delete("mantisChatAPI", '/messages/${id}',{}).then(result =>{
         console.log(result)
+        this.lastMessageId = ""
       }).catch(err =>{
         console.log(err);
       })
     }
-
   },
   data() {
     return {
       user: undefined,
       authState: undefined,
       unsubscribeAuth: undefined,
+      lastMessageId: "",
       formFields: [
         {
           type: "email",
