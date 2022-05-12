@@ -23,6 +23,7 @@ const messages = [
     href: "#",
     date: "hace 1 dia",
     datetime: "2021-01-27T16:35",
+    status: "Open",
     preview:
       "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
   },
@@ -33,6 +34,7 @@ const messages = [
     href: "#",
     date: "hace 3 dia",
     datetime: "2021-01-27T16:35",
+    status: "Closed",
     preview:
       "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
   },
@@ -43,6 +45,7 @@ const messages = [
     href: "#",
     date: "hace 6 dia",
     datetime: "2021-01-27T16:35",
+    status: "Open",
     preview:
       "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
   },
@@ -50,7 +53,7 @@ const messages = [
 const message = {
   project: "New pricing for existing customers",
   sender: "joearmstrong@example.com",
-  status: "Open",
+  status: "open",
   items: [
     {
       id: 1,

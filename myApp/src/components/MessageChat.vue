@@ -38,21 +38,21 @@
               sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start
             "
           >
-            <span
-              class="
-                inline-flex
-                items-center
-                px-3
-                py-0.5
-                rounded-full
-                text-sm
-                font-medium
-                bg-cyan-100
-                text-cyan-800
-              "
-            >
-              {{ message.status }}
-            </span>
+              <span
+                class="
+                  inline-flex
+                  items-center
+                  px-3
+                  py-0.5
+                  rounded-full
+                  text-sm
+                  font-medium
+                  text-cyan-800
+                "
+                v-bind:style=" message.status == 'Closed' ? {backgroundColor : 'rgb(252 165 165)'}: {backgroundColor:'rgb(207 250 254)'}"
+              >
+                {{ message.status }}
+              </span>
           </div>
         </div>
       </div>

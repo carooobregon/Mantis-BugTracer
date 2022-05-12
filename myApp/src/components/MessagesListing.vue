@@ -69,6 +69,34 @@
                 class="flex-shrink-0 whitespace-nowrap text-sm text-gray-500"
                 >{{ message.date }}</time
               >
+            <div
+              class="
+                mt-4
+                flex
+                justify-between
+                sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start
+              "
+            >
+                <span
+                style="width:20px height:15px"
+                  class="
+                    inline-flex
+                    items-center
+                    px-3
+                    py-0.5
+                    rounded-full
+                    text-sm
+                    font-medium
+                    text-cyan-800
+                  "
+                  v-bind:style=" message.status == 'Closed' ? { backgroundColor : 'rgb(252 165 165)'}: {backgroundColor:'rgb(207 250 254)'}"
+                >
+                <p>
+                  {{ message.status }}
+                  </p>
+                </span>
+            </div>
+              
             </div>
             <div class="mt-1">
               <p class="line-clamp-2 text-sm text-gray-600">
