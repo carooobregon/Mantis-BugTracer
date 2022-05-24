@@ -1,4 +1,3 @@
-
 <template>
   <div class="h-full flex flex-col">
     <!-- Top nav-->
@@ -7,16 +6,7 @@
       <div class="absolute inset-y-0 left-0 lg:static lg:flex-shrink-0">
         <a
           href="#"
-          class="
-            flex
-            items-center
-            justify-center
-            h-16
-            w-16
-            bg-cyan-400
-            focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600
-            lg:w-20
-          "
+          class="flex items-center justify-center h-16 w-16 bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600 lg:w-20"
         >
           <img
             class="h-8 w-auto"
@@ -28,31 +18,12 @@
 
       <!-- Menu button area -->
       <div
-        class="
-          absolute
-          inset-y-0
-          right-0
-          pr-4
-          flex
-          items-center
-          sm:pr-6
-          lg:hidden
-        "
+        class="absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 lg:hidden"
       >
         <!-- Mobile menu button -->
         <button
           type="button"
-          class="
-            -mr-2
-            inline-flex
-            items-center
-            justify-center
-            p-2
-            rounded-md
-            text-gray-400
-            hover:text-gray-500 hover:bg-gray-100
-            focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600
-          "
+          class="-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600"
           @click="open = true"
         >
           <span class="sr-only">Open main menu</span>
@@ -62,10 +33,7 @@
 
       <!-- Desktop nav area -->
       <div
-        class="
-          hidden
-          lg:min-w-0 lg:flex-1 lg:flex lg:items-center lg:justify-between
-        "
+        class="hidden lg:min-w-0 lg:flex-1 lg:flex lg:items-center lg:justify-between"
       >
         <div class="min-w-0 flex-1"></div>
         <div class="ml-10 pr-4 flex-shrink-0 flex items-center space-x-10">
@@ -73,14 +41,7 @@
             <span class="inline-flex">
               <a
                 href="#"
-                class="
-                  -mx-1
-                  bg-white
-                  p-1
-                  rounded-full
-                  text-gray-400
-                  hover:text-gray-500
-                "
+                class="-mx-1 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500"
               >
                 <span class="sr-only">View notifications</span>
                 <BellIcon class="h-6 w-6" aria-hidden="true" />
@@ -89,16 +50,7 @@
 
             <Menu as="div" class="relative inline-block text-left">
               <MenuButton
-                class="
-                  bg-white
-                  rounded-full
-                  flex
-                  text-sm
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-blue-600
-                "
+                class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
               >
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
@@ -113,19 +65,7 @@
                 leave-to-class="transform opacity-0 scale-95"
               >
                 <MenuItems
-                  class="
-                    origin-top-right
-                    absolute
-                    z-30
-                    right-0
-                    mt-2
-                    w-56
-                    rounded-md
-                    shadow-lg
-                    bg-white
-                    ring-1 ring-black ring-opacity-5
-                    focus:outline-none
-                  "
+                  class="origin-top-right absolute z-30 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <div class="py-1">
                     <MenuItem v-slot="{ active }">
@@ -164,10 +104,7 @@
             leave-to="opacity-0"
           >
             <DialogOverlay
-              class="
-                hidden
-                sm:block sm:fixed sm:inset-0 sm:bg-gray-600 sm:bg-opacity-75
-              "
+              class="hidden sm:block sm:fixed sm:inset-0 sm:bg-gray-600 sm:bg-opacity-75"
             />
           </TransitionChild>
 
@@ -181,20 +118,7 @@
             leave-to="transform opacity-0 scale-110 sm:translate-x-full sm:scale-100 sm:opacity-100"
           >
             <nav
-              class="
-                fixed
-                z-40
-                inset-0
-                h-full
-                w-full
-                bg-white
-                sm:inset-y-0
-                sm:left-auto
-                sm:right-0
-                sm:max-w-sm
-                sm:w-full
-                sm:shadow-lg
-              "
+              class="fixed z-40 inset-0 h-full w-full bg-white sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-sm sm:w-full sm:shadow-lg"
               aria-label="Global"
             >
               <div class="h-16 flex items-center justify-between px-4 sm:px-6">
@@ -207,20 +131,7 @@
                 </a>
                 <button
                   type="button"
-                  class="
-                    -mr-2
-                    inline-flex
-                    items-center
-                    justify-center
-                    p-2
-                    rounded-md
-                    text-gray-400
-                    hover:text-gray-500 hover:bg-gray-100
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-inset
-                    focus:ring-blue-600
-                  "
+                  class="-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600"
                   @click="open = false"
                 >
                   <span class="sr-only">Close main menu</span>
@@ -248,14 +159,7 @@
                   </div>
                   <a
                     href="#"
-                    class="
-                      ml-auto
-                      flex-shrink-0
-                      bg-white
-                      p-2
-                      text-gray-400
-                      hover:text-gray-500
-                    "
+                    class="ml-auto flex-shrink-0 bg-white p-2 text-gray-400 hover:text-gray-500"
                   >
                     <span class="sr-only">View notifications</span>
                     <BellIcon class="h-6 w-6" aria-hidden="true" />
@@ -266,16 +170,7 @@
                     v-for="item in userNavigation"
                     :key="item.name"
                     :href="item.href"
-                    class="
-                      block
-                      rounded-md
-                      py-2
-                      px-3
-                      text-base
-                      font-medium
-                      text-gray-900
-                      hover:bg-gray-50
-                    "
+                    class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50"
                     >{{ item.name }}</a
                   >
                 </div>
@@ -334,7 +229,7 @@ export default {
     MenuIcon,
     XIcon,
   },
-  props: ["messages", "message"],
+  props: ["message"],
   setup() {
     const open = ref(false);
 

@@ -1,11 +1,11 @@
 <template>
-  <ChatLayout :message="message" :messages="messages">
+  <ChatLayout :message="message">
     <template v-slot:chat>
       <MessageChat :message="message" />
     </template>
 
     <template v-slot:listing>
-      <MessagesListing :messages="messages" />
+      <MessagesListing :projects="projects" />
     </template>
   </ChatLayout>
 </template>
@@ -15,41 +15,51 @@ import ChatLayout from "../layouts/ChatLayout.vue";
 import MessagesListing from "../components/MessagesListing.vue";
 import MessageChat from "../components/MessageChat.vue";
 
-const messages = [
+const projects = [
   {
     id: 1,
-    project: "Proyecto 1234",
-    sender: "Gloria Roberston",
-    href: "#",
-    date: "hace 1 dia",
-    datetime: "2021-01-27T16:35",
-    status: "Open",
-    preview:
-      "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
+    name: "Arboleda",
+    issues: [
+      {
+        id: 1,
+        sender: "Gloria Roberston",
+        href: "#",
+        date: "hace 1 dia",
+        datetime: "2021-01-27T16:35",
+        status: "Open",
+        preview:
+          "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
+      },
+      {
+        id: 2,
+        sender: "Alejandra Garza",
+        href: "#",
+        date: "hace 3 dia",
+        datetime: "2021-01-27T16:35",
+        status: "Closed",
+        preview:
+          "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
+      },
+    ],
   },
   {
     id: 2,
-    project: "Proyecto 1233",
-    sender: "Alejandra Garza",
-    href: "#",
-    date: "hace 3 dia",
-    datetime: "2021-01-27T16:35",
-    status: "Closed",
-    preview:
-      "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
-  },
-  {
-    id: 3,
-    project: "Proyecto 1256",
-    sender: "Eduardo Torres ",
-    href: "#",
-    date: "hace 6 dia",
-    datetime: "2021-01-27T16:35",
-    status: "Open",
-    preview:
-      "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
+    name: "Cooking App",
+    issues: [
+      {
+        id: 3,
+        sender: "Eduardo Torres ",
+        href: "#",
+        date: "hace 6 dia",
+        datetime: "2021-01-27T16:35",
+        status: "Open",
+        preview:
+          "Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt maiores et accusamus quod dolor.",
+      },
+    ],
   },
 ];
+
 const message = {
   project: "New pricing for existing customers",
   sender: "joearmstrong@example.com",
@@ -95,7 +105,7 @@ export default {
   },
   setup() {
     return {
-      messages,
+      projects,
       message,
     };
   },
