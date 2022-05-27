@@ -6,8 +6,19 @@
 
 <script>
 import SyncLoader from "vue-spinner/src/SyncLoader.vue";
+import { Auth } from "aws-amplify";
 
 export default {
+  created() {
+    const project_id = this.$route.params.project_id;
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        // SIGNED IN -> create new chat
+      })
+      .catch(() => {
+        console.log("NOT LOGGED IN");
+      });
+  },
   components: {
     SyncLoader,
   },
