@@ -28,7 +28,8 @@
     "i": "^0.3.7",
     "typescript-eslint": "0.0.1-alpha.0",
     "vue": "^3.2.21",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-spinner": "^1.0.4"
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",
