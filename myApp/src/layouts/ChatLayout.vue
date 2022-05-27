@@ -68,9 +68,8 @@
                   class="origin-top-right absolute z-30 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <div class="py-1">
-                    <MenuItem v-slot="{ active }">
+                    <MenuItem v-slot="{ active }" @click="signOut">
                       <a
-                        href="#"
                         :class="[
                           active ? 'bg-gray-100' : '',
                           'block px-4 py-2 text-sm text-gray-700',
@@ -169,7 +168,7 @@
                   <a
                     v-for="item in userNavigation"
                     :key="item.name"
-                    :href="item.href"
+                    @click="item.onClick"
                     class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50"
                     >{{ item.name }}</a
                   >
@@ -205,6 +204,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
+import { Auth } from "aws-amplify";
 
 const user = {
   name: "Whitney Francis",
@@ -213,7 +213,7 @@ const user = {
     "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 
-const userNavigation = [{ name: "Cerrar Sesión", href: "#" }];
+const userNavigation = [{ name: "Cerrar Sesión", onClick: "signOut" }];
 
 export default {
   components: {
@@ -230,13 +230,22 @@ export default {
     XIcon,
   },
   props: ["message"],
+  methods: {
+    async signOut() {
+      try {
+        await Auth.signOut({ global: true });
+        this.$router.push({ name: "Auth" });
+      } catch (error) {
+        console.log("error signing out: ", error);
+      }
+    }
+  },
   setup() {
     const open = ref(false);
 
     return {
       user,
       userNavigation,
-
       open,
     };
   },
