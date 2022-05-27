@@ -16,7 +16,9 @@ export default {
         // SIGNED IN -> create new chat
       })
       .catch(() => {
-        console.log("NOT LOGGED IN");
+        localStorage.setItem("project_id", project_id);
+        localStorage.setItem("pending_new_chat", true);
+        this.$router.push({ name: "Auth" });
       });
   },
   components: {

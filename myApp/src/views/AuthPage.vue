@@ -24,8 +24,14 @@ export default {
     this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData;
-      if (authState === 'signedin') {
-      this.$router.push({ name: "Home" });
+      if (authState === "signedin") {
+        const pending_new_chat = localStorage.getItem("pending_new_chat");
+        if (pending_new_chat) {
+          const project_id = localStorage.getItem("project_id");
+          this.$router.push({ name: "New Chat", params: { project_id } });
+          return;
+        }
+        this.$router.push({ name: "Home" });
       }
     });
   },
